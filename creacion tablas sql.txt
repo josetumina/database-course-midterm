@@ -1,0 +1,37 @@
+-- Creación de la tabla 'operario'
+CREATE TABLE operario (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(255)
+);
+
+-- Creación de la tabla 'estacion'
+CREATE TABLE estacion (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(255),
+    modelo VARCHAR(255),
+    latitud DECIMAL(9,6),
+    longitud DECIMAL(9,6),
+    Fecha_compra DATE,
+    FechaInstalacion DATE,
+    d INT,
+    FOREIGN KEY (d) REFERENCES operario(id)
+);
+
+-- Creación de la tabla 'medicion'
+CREATE TABLE medicion (
+    idMedicion INT PRIMARY KEY,
+    fechaHora TIMESTAMP,
+    valorMedido DECIMAL,
+    fechainstalacion DATE,
+    id INT,
+    FOREIGN KEY (id) REFERENCES estacion(id)
+);
+
+-- Creación de la tabla 'comportamiento'
+CREATE TABLE comportamiento (
+    nombreConta VARCHAR(255),
+    id INT PRIMARY KEY,
+    nombreVar VARCHAR(255),
+    idMedicion INT,
+    FOREIGN KEY (idMedicion) REFERENCES medicion(idMedicion)
+);
